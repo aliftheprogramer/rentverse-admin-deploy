@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Custom theme tweaks if needed */
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
