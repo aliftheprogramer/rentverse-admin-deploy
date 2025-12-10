@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "../features/auth/presentation/login.pages.tsx";
 import ProtectedRoute from "./ProtectedRoute";
+import Unauthorized from "./Unauthorized";
 
 // Placeholder Home component — replace with real dashboard/page
 const Home: React.FC = () => {
@@ -13,10 +14,11 @@ const AppRouter: React.FC = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/login" element={<LoginPage />} />
+				<Route path="/unauthorized" element={<Unauthorized />} />
 				<Route
 					path="/"
 					element={
-						<ProtectedRoute>
+						<ProtectedRoute requiredRole="ADMIN">
 							<Home />
 						</ProtectedRoute>
 					}

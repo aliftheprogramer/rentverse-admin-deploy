@@ -1,4 +1,6 @@
 import { useCallback, useState } from "react";
+import { apiClient } from "../../../../core/api.client";
+import { endpoints } from "../../../../core/api.urls";
 
 export function useLogin() {
 	const [email, setEmail] = useState("");
@@ -17,17 +19,17 @@ export function useLogin() {
 			setError(null);
 			setLoading(true);
 			try {
-				// TODO: Replace with real API call
-				await new Promise((res) => setTimeout(res, 800));
-
 				if (!email || !password) {
 					throw new Error("Email and password are required");
 				}
 
-				// Simulate successful login: store token in localStorage
-				localStorage.setItem("token", "dummy-token");
-
-				// Navigate to app root/home — let router guard handle protected views
+				const res = await apiClient.post(endpoints.login, { email, password });
+				const { accessToken, user } = res.data.data;
+				localStorage.setItem("token", accessToken);
+				if (user?.role) {
+					localStorage.setItem("role", String(user.role));
+				}
+				// Redirect to home; ProtectedRoute will verify role
 				window.location.href = "/";
 			} catch (err) {
 				const message =
