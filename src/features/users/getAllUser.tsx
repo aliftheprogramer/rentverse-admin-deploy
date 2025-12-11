@@ -4,7 +4,7 @@ import type { User, UsersMeta } from "./domain/user.entity";
 import { Link } from "react-router-dom";
 
 const ROLE_OPTIONS = ["ALL", "TENANT", "LANDLORD"] as const;
-const KYC_OPTIONS = ["ALL", "VERIFIED", "SUBMITTED", "PENDING", "REJECTED"] as const;
+const KYC_OPTIONS = ["ALL", "VERIFIED", "PENDING", "REJECTED"] as const;
 
 const UsersList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);

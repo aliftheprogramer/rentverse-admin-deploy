@@ -17,6 +17,12 @@ const IconProperty = () => (
   </svg>
 );
 
+const IconDispute = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m2 0a7 7 0 11-14 0 7 7 0 0114 0zM12 8v4" />
+  </svg>
+);
+
 const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
   const userName = typeof window !== "undefined" ? localStorage.getItem("userName") : null;
 
@@ -44,6 +50,11 @@ const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
           <NavLink to="/properties" className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded ${isActive ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`}>
             <IconProperty />
             <span className="text-sm font-medium">Property</span>
+          </NavLink>
+
+          <NavLink to="/disputes" className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded ${isActive ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+            <IconDispute />
+            <span className="text-sm font-medium">Disputes</span>
           </NavLink>
         </nav>
       </aside>

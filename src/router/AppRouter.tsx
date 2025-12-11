@@ -5,6 +5,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Unauthorized from "./Unauthorized";
 import MainContainer from "../container/main.container";
 import UsersList from "../features/users/getAllUser";
+import DisputesList from "../features/disputes/getAllDisputes";
 const UserDetail = React.lazy(() => import("../features/users/getDetailUser"));
 
 const Profile: React.FC = () => {
@@ -63,6 +64,17 @@ const AppRouter: React.FC = () => {
 						<ProtectedRoute requiredRole="ADMIN">
 							<MainContainer>
 								<UsersList />
+							</MainContainer>
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/disputes"
+					element={
+						<ProtectedRoute requiredRole="ADMIN">
+							<MainContainer>
+								<DisputesList />
 							</MainContainer>
 						</ProtectedRoute>
 					}
