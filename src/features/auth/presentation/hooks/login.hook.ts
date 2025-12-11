@@ -29,6 +29,9 @@ export function useLogin() {
 				if (user?.role) {
 					localStorage.setItem("role", String(user.role));
 				}
+				if (user?.name) {
+					localStorage.setItem("userName", String(user.name));
+				}
 				// Redirect to home; ProtectedRoute will verify role
 				window.location.href = "/";
 			} catch (err) {

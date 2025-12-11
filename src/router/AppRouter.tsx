@@ -3,11 +3,32 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "../features/auth/presentation/login.pages.tsx";
 import ProtectedRoute from "./ProtectedRoute";
 import Unauthorized from "./Unauthorized";
+import MainContainer from "../container/main.container";
+import UsersList from "../features/users/getAllUser";
+const UserDetail = React.lazy(() => import("../features/users/getDetailUser"));
 
-// Placeholder Home component — replace with real dashboard/page
-const Home: React.FC = () => {
-	return <div style={{ padding: 24 }}>Home (Protected)</div>;
+const Profile: React.FC = () => {
+	const userName = typeof window !== "undefined" ? localStorage.getItem("userName") : null;
+	return (
+		<div>
+			<h2 className="text-2xl font-semibold">Profile</h2>
+			<p className="mt-2 text-gray-600">{userName || 'Admin'}</p>
+		</div>
+	);
 };
+
+const Properties: React.FC = () => {
+	return (
+		<div>
+			<h2 className="text-2xl font-semibold">Properties</h2>
+			<p className="mt-2 text-gray-600">List of properties (placeholder)</p>
+		</div>
+	);
+};
+
+// UsersList component will render the users table
+
+// (Home placeholder removed — root now redirects to /users)
 
 const AppRouter: React.FC = () => {
 	return (
@@ -19,7 +40,55 @@ const AppRouter: React.FC = () => {
 					path="/"
 					element={
 						<ProtectedRoute requiredRole="ADMIN">
-							<Home />
+							{/* Redirect root to /users */}
+							<Navigate to="/users" replace />
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/profile"
+					element={
+						<ProtectedRoute requiredRole="ADMIN">
+							<MainContainer>
+								<Profile />
+							</MainContainer>
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/users"
+					element={
+						<ProtectedRoute requiredRole="ADMIN">
+							<MainContainer>
+								<UsersList />
+							</MainContainer>
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/users/:id"
+					element={
+						<ProtectedRoute requiredRole="ADMIN">
+							<MainContainer>
+								{ /* lazy: mount detail component */ }
+								<React.Suspense fallback={<div>Loading...</div>}>
+									<UserDetail />
+								</React.Suspense>
+							</MainContainer>
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path="/properties"
+					element={
+						<ProtectedRoute requiredRole="ADMIN">
+							<MainContainer>
+								<Properties />
+							</MainContainer>
 						</ProtectedRoute>
 					}
 				/>
