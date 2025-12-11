@@ -45,10 +45,10 @@ const DisputesList: React.FC = () => {
     })();
   }, []);
 
-  const openResolve = (d: Dispute) => {
+  const openResolve = (d: Dispute, prefill?: { resolution?: string | null; adminNotes?: string | null }) => {
     setSelected(d);
-    setResolution("");
-    setAdminNotes("");
+    setResolution(prefill?.resolution ?? "");
+    setAdminNotes(prefill?.adminNotes ?? "");
     setShowModal(true);
   };
 
@@ -115,7 +115,12 @@ const DisputesList: React.FC = () => {
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
                     {d.status === 'RESOLVED' ? (
-                      <Link to={`/disputes/${d.id}`} className="px-3 py-1 rounded border text-sm">Update</Link>
+                      <button
+                        onClick={() => openResolve(d, { resolution: d.resolution ?? null, adminNotes: d.adminNotes ?? null })}
+                        className="px-3 py-1 rounded border text-sm"
+                      >
+                        Update
+                      </button>
                     ) : (
                       <button
                         onClick={() => openResolve(d)}
