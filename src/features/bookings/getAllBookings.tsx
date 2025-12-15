@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { bookingRepository } from "./data/booking.repository.impl";
 import type { Booking } from "./domain/booking.entity";
-import { } from "react-router-dom";
 
 const BookingsList: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -58,7 +57,7 @@ const BookingsList: React.FC = () => {
                 <td className="px-4 py-3">{b.payment?.status || '-'} {b.payment?.amount ? `(${b.payment.amount})` : ''}</td>
                 <td className="px-4 py-3">{b.status || '-'}</td>
                 <td className="px-4 py-3">
-                  <Link to={`/bookings/${b.id}`} className="text-blue-600 hover:underline text-sm">View</Link>
+                  <a href={`/bookings/${b.id}`} className="text-blue-600 hover:underline text-sm">View</a>
                 </td>
               </tr>
             ))}

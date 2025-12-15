@@ -1,6 +1,5 @@
 import React from "react";
 import { useLogin } from "./hooks/login.hook";
-import { } from "react-router-dom";
 import backgroundImage from "../../../assets/background.png";
 
 const LoginPage: React.FC = () => {
@@ -87,9 +86,9 @@ const LoginPage: React.FC = () => {
 
 					<div className="mt-4 text-sm text-gray-500 text-center">
 						Already have a Rentverse account?{" "}
-						<Link to="/login" className="text-red-600 hover:text-red-700 font-semibold">
+						<a href="/login" className="text-red-600 hover:text-red-700 font-semibold">
 							Sign in
-						</Link>
+						</a>
 					</div>
 				</div>
 			</div>

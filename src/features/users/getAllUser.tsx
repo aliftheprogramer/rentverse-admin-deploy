@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { userRepository } from "./data/user.repository.impl";
 import type { User, UsersMeta } from "./domain/user.entity";
-import { } from "react-router-dom";
 
 const ROLE_OPTIONS = ["ALL", "TENANT", "LANDLORD"] as const;
 const KYC_OPTIONS = ["ALL", "VERIFIED", "PENDING", "REJECTED"] as const;
@@ -122,12 +121,12 @@ const UsersList: React.FC = () => {
                 <td className="px-4 py-3">{u.trustScore ?? "-"}</td>
                 <td className="px-4 py-3">{(u.joinedAt || u.createdAt || "")?.slice(0, 10)}</td>
                 <td className="px-4 py-3">
-                  <Link
-                    to={`/users/${u.id}`}
+                  <a
+                    href={`/users/${u.id}`}
                     className="text-blue-600 hover:underline text-sm"
                   >
                     View
-                  </Link>
+                  </a>
                 </td>
               </tr>
             ))}

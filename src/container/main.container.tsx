@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
 
 type MainContainerProps = {
   children: React.ReactNode;
@@ -25,12 +24,17 @@ const IconDispute = () => (
 
 const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
   const userName = typeof window !== "undefined" ? localStorage.getItem("userName") : null;
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const navClass = (path: string) => {
+    const active = currentPath === path || currentPath.startsWith(path);
+    return `flex items-center gap-3 px-3 py-2 rounded ${active ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`;
+  };
 
   return (
     <div className="min-h-screen flex bg-gray-50">
       <aside className="w-64 bg-white border-r">
         <div className="p-4 border-b">
-          <Link to="/profile" className="flex items-center gap-3">
+          <a href="/profile" className="flex items-center gap-3">
             <div className="rounded-full bg-red-600 text-white w-10 h-10 flex items-center justify-center font-semibold">
               {userName ? userName.charAt(0).toUpperCase() : "A"}
             </div>
@@ -38,24 +42,24 @@ const MainContainer: React.FC<MainContainerProps> = ({ children }) => {
               <div className="text-sm font-semibold text-gray-800">{userName || "Admin"}</div>
               <div className="text-xs text-gray-500">Administrator</div>
             </div>
-          </Link>
+          </a>
         </div>
 
         <nav className="p-4 space-y-2">
-          <NavLink to="/user" className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded ${isActive ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+          <a href="/users" className={navClass("/users")}>
             <IconUser />
             <span className="text-sm font-medium">User</span>
-          </NavLink>
+          </a>
 
-          <NavLink to="/properties" className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded ${isActive ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+          <a href="/properties" className={navClass("/properties")}>
             <IconProperty />
             <span className="text-sm font-medium">Property</span>
-          </NavLink>
+          </a>
 
-          <NavLink to="/disputes" className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded ${isActive ? 'bg-red-50 text-red-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+          <a href="/disputes" className={navClass("/disputes")}>
             <IconDispute />
             <span className="text-sm font-medium">Disputes</span>
-          </NavLink>
+          </a>
         </nav>
       </aside>
 
