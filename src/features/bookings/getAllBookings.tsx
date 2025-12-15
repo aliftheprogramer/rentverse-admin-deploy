@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bookingRepository } from "./data/booking.repository.impl";
 import type { Booking } from "./domain/booking.entity";
-import { Link } from "react-router-dom";
+import { } from "react-router-dom";
 
 const BookingsList: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);

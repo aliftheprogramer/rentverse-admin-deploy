@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { userRepository } from "./data/user.repository.impl";
 import type { User, UsersMeta } from "./domain/user.entity";
-import { Link } from "react-router-dom";
+import { } from "react-router-dom";
 
 const ROLE_OPTIONS = ["ALL", "TENANT", "LANDLORD"] as const;
 const KYC_OPTIONS = ["ALL", "VERIFIED", "PENDING", "REJECTED"] as const;

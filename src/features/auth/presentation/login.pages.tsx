@@ -1,6 +1,6 @@
 import React from "react";
 import { useLogin } from "./hooks/login.hook";
-import { Link } from "react-router-dom";
+import { } from "react-router-dom";
 import backgroundImage from "../../../assets/background.png";
 
 const LoginPage: React.FC = () => {
