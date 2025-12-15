@@ -8,6 +8,7 @@ import UsersList from "../features/users/getAllUser";
 import DisputesList from "../features/disputes/getAllDisputes";
 const DisputeDetail = React.lazy(() => import("../features/disputes/getDetailDispute"));
 import BookingsList from "../features/bookings/getAllBookings";
+import PropertiesList from "../features/properties/getAllProperties";
 const BookingDetail = React.lazy(() => import("../features/bookings/getDetailBooking"));
 const UserDetail = React.lazy(() => import("../features/users/getDetailUser"));
 
@@ -21,14 +22,7 @@ const Profile: React.FC = () => {
 	);
 };
 
-const Properties: React.FC = () => {
-	return (
-		<div>
-			<h2 className="text-2xl font-semibold">Properties</h2>
-			<p className="mt-2 text-gray-600">List of properties (placeholder)</p>
-		</div>
-	);
-};
+// PropertiesList (admin) is rendered from features/properties/getAllProperties
 
 // UsersList component will render the users table
 
@@ -139,7 +133,7 @@ const AppRouter: React.FC = () => {
 					element={
 						<ProtectedRoute requiredRole="ADMIN">
 							<MainContainer>
-								<Properties />
+								<PropertiesList />
 							</MainContainer>
 						</ProtectedRoute>
 					}

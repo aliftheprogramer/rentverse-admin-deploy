@@ -1,10 +1,10 @@
 // src/core/api.urls.ts
 
-export const baseUrl = "http://127.0.0.1:3000/api/v1"
+export const baseUrl = "https://rvapi.ilhamdean.cloud/api/v1"
 
 export const getApiEndpoint = (endpoint: string) => {
 
-return `${baseUrl}/${endpoint}`
+    return `${baseUrl}/${endpoint}`
 
 }
 
